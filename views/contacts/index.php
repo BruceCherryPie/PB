@@ -24,14 +24,20 @@ $this->title = 'Список контактов';
 
         <?php foreach ($contacts as $contact) ?>
         <tr>
-            <td><?= $contact->fio?></td>
-            <td></td>
-            <td></td>
+            <td>
+                <?= $contact->fio?>
+            </td>
+            <td>
+                <?= $contact->emails->email?>
+            </td>
+            <td>
+                <?= $contact->phones->phone?>
+            </td>
             <td>
                 <?= $contact->birthdate?>
             </td>
             <td>
-
+                <?= $contact->companys->company?>
             </td>
             <td>
                 <?= $contact->status?>
@@ -39,7 +45,13 @@ $this->title = 'Список контактов';
         </tr>
         </tbody>
     </table>
-
+    <?PHP
+    echo '<ul>';
+    while ($row = $contacts->mysql_fetch_array()){
+        echo '<li><b>'.$row->fio.'</b></li>';
+    }
+    echo '</ul>';
+    ?>
 
 
 </div>

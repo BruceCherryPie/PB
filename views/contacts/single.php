@@ -1,14 +1,13 @@
 <?php
-
 /* @var $this yii\web\View */
 
-$this->title = 'Список контактов';
+$this->title = 'Редактирование';
 ?>
 
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Список контактов</h1>
+        <h1>Редактирование</h1>
 
     </div>
     <table class="table table-striped" style="border: 2px solid lightgrey">
@@ -21,25 +20,12 @@ $this->title = 'Список контактов';
             <td>Компания</td>
             <td>Статус</td>
         </tr>
-
-        <?php foreach ($contacts as $contact) ?>
-        <tr>
-            <td><?= $contact->fio?></td>
-            <td></td>
-            <td></td>
-            <td>
-                <?= $contact->birthdate?>
-            </td>
-            <td>
-
-            </td>
-            <td>
-                <?= $contact->status?>
-            </td>
-        </tr>
+        <?php
+        while ($row = $contacts->fetch(PDO::FETCH_OBJ)){
+            echo '<li><b>'.$row->contact.'</b></li>';
+        }
+        ?>
         </tbody>
     </table>
-
-
 
 </div>

@@ -6,10 +6,10 @@ namespace app\models;
 
 use yii\db\ActiveRecord;
 
-class Contacts extends ActiveRecord
+class Phones extends ActiveRecord
 {
     public static function tableName()
     {
-        return 'contacts';
+        return 'phones';
     }
 }

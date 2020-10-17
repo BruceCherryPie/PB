@@ -38,7 +38,8 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Список контактов', 'url' => ['/contacts/index']]
+            ['label' => 'Список контактов', 'url' => ['/contacts/index']],
+            ['label' => 'Один контакт', 'url' => ['/contacts/single']]
         ],
     ]);
     NavBar::end();

@@ -3,6 +3,7 @@
 /* @var $this yii\web\View */
 
 $this->title = 'Список контактов';
+use yii\grid\GridView
 ?>
 
 <div class="site-index">
@@ -11,47 +12,37 @@ $this->title = 'Список контактов';
         <h1>Список контактов</h1>
 
     </div>
-    <table class="table table-striped" style="border: 2px solid lightgrey">
-        <tbody>
-        <tr>
-            <td>ФИО</td>
-            <td>Электронная почта</td>
-            <td>Номер</td>
-            <td>Дата рождения</td>
-            <td>Компания</td>
-            <td>Статус</td>
-        </tr>
 
-        <?php foreach ($contacts as $contact) ?>
-        <tr>
-            <td>
-                <?= $contact->fio?>
-            </td>
-            <td>
-                <?= $contact->emails->email?>
-            </td>
-            <td>
-                <?= $contact->phones->phone?>
-            </td>
-            <td>
-                <?= $contact->birthdate?>
-            </td>
-            <td>
-                <?= $contact->companys->company?>
-            </td>
-            <td>
-                <?= $contact->status?>
-            </td>
-        </tr>
+        <?PHP
+        echo GridView::widget([
+            'dataProvider' => $dataProvider,
+            'columns'=>[
+            'fio',
+            'phone',
+            'email',
+            'company',
+            'birthdate',
+            'status',
+            ['class' => 'yii\grid\ActionColumn']
+            ]
+        ]);
+        ?>
+
+
+<!--        --><?php //foreach ($contacts as $contact): {
+//
+//        }?>
+<!--        <tr>-->
+<!--            <td>--><?//= $contact->fio?><!--</td>-->
+<!--            <td>--><?//= $contact->email?><!--</td>-->
+<!--            <td>--><?//= $contact->phone?><!--</td>-->
+<!--            <td>--><?//= Yii::$app->formatter->asDate($contact->birthdate)?><!--</td>-->
+<!--            <td>--><?//= $contact->company?><!--</td>-->
+<!--            <td>--><?//= $contact->status?><!--</td>-->
+<!--            <td><a class="glyphicon glyphicon-eye-open" href="--><?//= \yii\helpers\Url::to(['contacts/single', 'id' => $contact->id]) ?><!--"></a></td>-->
+<!--        </tr>-->
+<!--        --><?php //endforeach;?>
         </tbody>
     </table>
-    <?PHP
-    echo '<ul>';
-    while ($row = $contacts->mysql_fetch_array()){
-        echo '<li><b>'.$row->fio.'</b></li>';
-    }
-    echo '</ul>';
-    ?>
-
 
 </div>

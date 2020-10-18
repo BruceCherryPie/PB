@@ -3,6 +3,7 @@
 
 namespace app\controllers;
 
+use Yii;
 use yii\data\ActiveDataProvider;
 use app\models\Contacts;
 use yii\web\Controller;
@@ -24,16 +25,22 @@ class ContactsController extends Controller
         ]);
         return $this->render('index',['dataProvider'=>$dataProvider]);
     }
-//    public function actionUpdate($id)
-//    {
-//        $model = Contacts::findOne($id);
-//
-//    }
-//    public function actionView($id)
-//    {
-//        $model = Contacts::findOne($id);
-//        return $this->render('view',['model'=>$model])
-//    }
+    public function actionUpdate($id)
+    {
+        $model = Contacts::findOne($id);
+        if($model->load(Yii::$app->request->post()))
+        {
+         $model->save();
+         return  $this->redirect('view',['id'=>$id]);
+        }
+        return $this->render('edit',['model'=>$model]);
+
+    }
+    public function actionView($id)
+    {
+        $model = Contacts::findOne($id);
+        return $this->render('view',['model'=>$model]);
+    }
  public function actionSingle()
  {
      return $this->render('single',compact('contacts'));

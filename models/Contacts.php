@@ -19,5 +19,11 @@ class Contacts extends ActiveRecord
         'status'=>'Статус'
     ];
     }
+    public function rules()
+    {
+        return [
+            [['fio','phone'],'required']
+        ];
+    }
 
 }
